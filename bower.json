@@ -1,0 +1,17 @@
+{
+  "name": "7-hour-quest",
+  "homepage": "https://github.com/waxcage/7-hour-quest",
+  "authors": [
+    "we"
+  ],
+  "description": "",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
