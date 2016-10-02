@@ -11,7 +11,8 @@ window.onload = function () {
     //  Be sure to replace it with an updated version before you start experimenting with adding your own code.
 
     var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game-container', {preload: preload, create: create, update:update}, true);
-    var player, backgroundWhite, backgroundBlack;
+    var player, backgroundWhite, backgroundBlack, cursors;
+    var ObjectFactory = new GameObjectFactory(game);
     function preload() {
 
     }
@@ -19,40 +20,25 @@ window.onload = function () {
     function create() {
         game.stage.backgroundColor = '#000000';
 
-        backgroundWhite = game.add.group();
-        backgroundWhite.enableBody = true;
-        var BCKW1 = game.add.graphics(0,0);
-        BCKW1.beginFill(0xffffff);
-        BCKW1.drawRect(0, 0, 800,300);
-        BCKW1.endFill();
-        backgroundWhite.add(BCKW1);
-        BCKW1.body.immovable = true;
-
-        backgroundBlack = game.add.group();
-        backgroundBlack.enableBody = true;
-        var BCKB1 = game.add.graphics(0,300);
-        BCKB1.beginFill(0x000000);
-        BCKB1.drawRect(0, 0, 800,300);
-        BCKB1.endFill();
-        backgroundBlack.add(BCKB1);
-        BCKB1.body.immovable = true;
-
-
-
         game.physics.startSystem(Phaser.Physics.ARCADE);
 
-        player = game.add.graphics(5, 5);
-        player.beginFill(0x000000);
-        player.drawRect(0,0,20,20);
-        player.endFill();
+        backgroundWhite = ObjectFactory.createBackgroundWhite();
 
-        game.physics.arcade.enable(player);
+        backgroundBlack = ObjectFactory.createBackgroundBlack();
 
-        player.body.gravity.y = 300;
-        player.body.collideWorldBounds = true;
+
+
+        player = ObjectFactory.createPlayer();
+
+        cursors = game.input.keyboard.createCursorKeys();
     }
 
     function update() {
         var hitPlatform = game.physics.arcade.collide(player, backgroundBlack);
+        if (cursors.up.isDown && player.body.touching.down && hitPlatform)
+        {
+            player.body.velocity.y = -350;
+        }
     }
+
 };
