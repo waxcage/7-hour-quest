@@ -44,5 +44,16 @@ function SHQPlayer(game, cursors) {
 
     var _switchWorldHandler = function () {
         this.gravity = -this.gravity;
+
+        var newY = this.isWhiteWorld? stageHeight/2 - (this.player.body.y + playerHeight) + stageHeight/2 :
+            stageHeight/2 - (this.player.body.y - stageHeight/2) -playerHeight ;
+        console.log(newY);
+
+        this.isWhiteWorld = !this.isWhiteWorld;
+        this.player.body.gravity.y = this.gravity;
+        this.player.body.y = newY;
+        this.player.beginFill(this.isWhiteWorld?0x000000:0xffffff);
+        this.player.drawRect(0, 0, playerWidth, playerHeight);1
+        this.player.endFill();
     };
 }

@@ -37,13 +37,14 @@ window.onload = function () {
     }
 
     function update() {
-        var hitPlatform = game.physics.arcade.collide(user.player, backgroundBlack);
+        game.physics.arcade.collide(user.player, backgroundBlack);
+        game.physics.arcade.collide(user.player, backgroundWhite);
         user.playerMovement();
 
 
         var playerHitWorld = game.physics.arcade.collide(user.player, worldBlack);
 
-        console.log(playerHitWorld);
+
         if (playerHitWorld && user.player.body.touching.right) {
             user.player.body.velocity.x = -1*gameSpeed;
         }
