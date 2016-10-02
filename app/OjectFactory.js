@@ -35,17 +35,19 @@ function GameObjectFactory(game) {
         var world = game.add.group();
         world.enableBody = true;
 
-        var worldItem1 = game.add.graphics(0,0);
         var worldItemHeight = 50;
         var worldItemWidth = 50;
 
+        var worldItem1 = game.add.graphics(2*stageWidth/3, stageHeight/2 - worldItemHeight);
+
         worldItem1.beginFill(0x000000);
-        worldItem1.drawRect(2*stageWidth/3, stageHeight/2 - worldItemHeight, worldItemWidth, worldItemHeight);
+        worldItem1.drawRect(0,0, worldItemWidth, worldItemHeight);
         worldItem1.endFill();
 
         world.add(worldItem1);
 
         worldItem1.body.velocity.x = -1*gameSpeed;
+        worldItem1.body.immovable = true;
 
         return world;
     };
