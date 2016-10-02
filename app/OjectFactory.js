@@ -32,7 +32,7 @@ function GameObjectFactory(game) {
     };
 
     this.createPlayer = function() {
-        var player = game.add.graphics(5, 5);
+        var player = game.add.graphics(stageWidth/15, stageHeight/15);
         player.beginFill(0x000000);
         player.drawRect(0,0,playerWidth, playerHeight);
         player.endFill();
