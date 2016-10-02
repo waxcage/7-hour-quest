@@ -9,7 +9,7 @@ window.onload = function () {
     //  Be sure to replace it with an updated version before you start experimenting with adding your own code.
 
     var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game-container', {preload: preload, create: create});
-    var player, graphics;
+    var player, background;
     function preload() {
 
     }
@@ -17,13 +17,22 @@ window.onload = function () {
     function create() {
         game.stage.backgroundColor = '#000000';
 
-        graphics = game.add.graphics(0, 0);
-        graphics.beginFill(0xffffff);
-        graphics.drawRect(0, 0, 800,300);
-        graphics.endFill();
+        background = game.add.graphics(0, 0);
+        background.beginFill(0xffffff);
+        background.drawRect(0, 0, 800,300);
+        background.endFill();
 
-        player = new Phaser.Physics.P2.Body(this.game, null, 0, 0);
-        player.setRectangle(20,20);
+        game.physics.startSystem(Phaser.Physics.ARCADE);
+
+        player = game.add.graphics(5, 5);
+        player.beginFill(0x000000);
+        player.drawRect(0,0,20,20);
+        player.endFill();
+
+        game.physics.arcade.enable(player);
+
+        player.body.gravity.y = 300;
+        player.body.collideWorldBounds = true;
     }
 
 };
