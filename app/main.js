@@ -64,9 +64,9 @@ window.onload = function () {
             }
 
         } else {
-            var hitPlatform = game.physics.arcade.collide(user.player, backgroundBlack);
+            game.physics.arcade.collide(user.player, backgroundBlack);
+            game.physics.arcade.collide(user.player, backgroundWhite);
             user.playerMovement();
-
 
             var playerHitWorld = game.physics.arcade.collide(user.player, worldBlack);
 
