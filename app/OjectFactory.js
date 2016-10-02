@@ -10,7 +10,7 @@ function GameObjectFactory(game) {
         background.enableBody = true;
         var BCK1 = game.add.graphics(0,0);
         BCK1.beginFill(0xffffff);
-        BCK1.drawRect(0, 0, 800,300);
+        BCK1.drawRect(0, 0, stageWidth, stageHeight/2);
         BCK1.endFill();
         background.add(BCK1);
         BCK1.body.immovable = true;
@@ -23,7 +23,7 @@ function GameObjectFactory(game) {
 
         var BCK1 = game.add.graphics(0,300);
         BCK1.beginFill(0x000000);
-        BCK1.drawRect(0, 0, 800,300);
+        BCK1.drawRect(0, 0, stageWidth, stageHeight/2);
         BCK1.endFill();
 
         background.add(BCK1);
@@ -34,7 +34,7 @@ function GameObjectFactory(game) {
     this.createPlayer = function() {
         var player = game.add.graphics(5, 5);
         player.beginFill(0x000000);
-        player.drawRect(0,0,20,20);
+        player.drawRect(0,0,playerWidth, playerHeight);
         player.endFill();
 
         game.physics.arcade.enable(player);

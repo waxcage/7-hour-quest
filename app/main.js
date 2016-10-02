@@ -3,9 +3,7 @@
  */
 
 window.onload = function () {
-
-
-
+    
     //  Note that this html file is set to pull down Phaser 2.5.0 from the JS Delivr CDN.
     //  Although it will work fine with this tutorial, it's almost certainly not the most current version.
     //  Be sure to replace it with an updated version before you start experimenting with adding your own code.
@@ -19,14 +17,10 @@ window.onload = function () {
 
     function create() {
         game.stage.backgroundColor = '#000000';
-
         game.physics.startSystem(Phaser.Physics.ARCADE);
 
         backgroundWhite = ObjectFactory.createBackgroundWhite();
-
         backgroundBlack = ObjectFactory.createBackgroundBlack();
-
-
 
         player = ObjectFactory.createPlayer();
 
