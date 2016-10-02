@@ -8,9 +8,10 @@ window.onload = function () {
     //  Although it will work fine with this tutorial, it's almost certainly not the most current version.
     //  Be sure to replace it with an updated version before you start experimenting with adding your own code.
 
-    var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game-container', {preload: preload, create: create, update:update}, true);
-    var player, backgroundWhite, backgroundBlack, cursors;
+    var game = new Phaser.Game(stageWidth, stageHeight, Phaser.AUTO, 'game-container', {preload: preload, create: create, update:update}, true);
+    var user, backgroundWhite, backgroundBlack, cursors;
     var ObjectFactory = new GameObjectFactory(game);
+
     function preload() {
 
     }
@@ -22,17 +23,14 @@ window.onload = function () {
         backgroundWhite = ObjectFactory.createBackgroundWhite();
         backgroundBlack = ObjectFactory.createBackgroundBlack();
 
-        player = ObjectFactory.createPlayer();
-
         cursors = game.input.keyboard.createCursorKeys();
+        user = new SHQPlayer(game,cursors);
+
     }
 
     function update() {
-        var hitPlatform = game.physics.arcade.collide(player, backgroundBlack);
-        if (cursors.up.isDown && player.body.touching.down && hitPlatform)
-        {
-            player.body.velocity.y = -350;
-        }
+        var hitPlatform = game.physics.arcade.collide(user.player, backgroundBlack);
+        user.playerMovement();
     }
 
 };

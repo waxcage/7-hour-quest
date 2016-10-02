@@ -31,17 +31,5 @@ function GameObjectFactory(game) {
         return background;
     };
 
-    this.createPlayer = function() {
-        var player = game.add.graphics(stageWidth/15, stageHeight/15);
-        player.beginFill(0x000000);
-        player.drawRect(0,0,playerWidth, playerHeight);
-        player.endFill();
-
-        game.physics.arcade.enable(player);
-
-        player.body.gravity.y = 300;
-        player.body.collideWorldBounds = true;
-        return player;
-    };
 }
 
