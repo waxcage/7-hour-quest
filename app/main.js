@@ -41,10 +41,11 @@ window.onload = function () {
         user.playerMovement();
 
 
-        var playerHitWorld = game.physics.arcade.collide(player, worldBlack);
+        var playerHitWorld = game.physics.arcade.collide(user.player, worldBlack);
 
-        if (playerHitWorld && player.body.touching.right) {
-            player.body.velocity.x = -1*gameSpeed;
+        console.log(playerHitWorld);
+        if (playerHitWorld && user.player.body.touching.right) {
+            user.player.body.velocity.x = -1*gameSpeed;
         }
 
     }
