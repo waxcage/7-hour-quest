@@ -3,13 +3,19 @@
  */
 
 window.onload = function () {
-    
+
     //  Note that this html file is set to pull down Phaser 2.5.0 from the JS Delivr CDN.
     //  Although it will work fine with this tutorial, it's almost certainly not the most current version.
     //  Be sure to replace it with an updated version before you start experimenting with adding your own code.
 
     var game = new Phaser.Game(stageWidth, stageHeight, Phaser.AUTO, 'game-container', {preload: preload, create: create, update:update}, true);
-    var user, backgroundWhite, backgroundBlack, cursors;
+    var
+        user,
+        backgroundWhite,
+        backgroundBlack,
+        cursors,
+        worldBlack;
+
     var ObjectFactory = new GameObjectFactory(game);
 
     function preload() {
@@ -23,6 +29,8 @@ window.onload = function () {
         backgroundWhite = ObjectFactory.createBackgroundWhite();
         backgroundBlack = ObjectFactory.createBackgroundBlack();
 
+        worldBlack = ObjectFactory.createWorldBlack();
+
         cursors = game.input.keyboard.createCursorKeys();
         user = new SHQPlayer(game,cursors);
 
@@ -31,6 +39,13 @@ window.onload = function () {
     function update() {
         var hitPlatform = game.physics.arcade.collide(user.player, backgroundBlack);
         user.playerMovement();
-    }
 
+
+        var playerHitWorld = game.physics.arcade.collide(player, worldBlack);
+
+        if (playerHitWorld && player.body.touching.right) {
+            player.body.velocity.x = -1*gameSpeed;
+        }
+
+    }
 };
