@@ -24,10 +24,8 @@ function SHQPlayer(game, cursors) {
         var jumpKey = this.isWhiteWorld? cursors.up : cursors.down,
             switchKey = this.isWhiteWorld? cursors.down : cursors.up;
 
-        console.log(jumpKey.keyCode);
-        console.log(switchKey);
+
         if (jumpKey.isDown && this.player.body.touching[this.isWhiteWorld?'down':'up']) {
-            console.log('jumping');
             this.player.body.velocity.y = this.isWhiteWorld?-playerJump:playerJump;
         }
         if(switchKey.isDown){
