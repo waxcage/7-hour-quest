@@ -24,8 +24,11 @@ function SHQPlayer(game, cursors) {
         var jumpKey = this.isWhiteWorld? cursors.up : cursors.down,
             switchKey = this.isWhiteWorld? cursors.down : cursors.up;
 
-        if (jumpKey.isDown && this.player.body.touching.down) {
-            this.player.body.velocity.y = -playerJump;
+        console.log(jumpKey.keyCode);
+        console.log(switchKey);
+        if (jumpKey.isDown && this.player.body.touching[this.isWhiteWorld?'down':'up']) {
+            console.log('jumping');
+            this.player.body.velocity.y = this.isWhiteWorld?-playerJump:playerJump;
         }
         if(switchKey.isDown){
             _switchWorldHandler.call(this);
@@ -47,13 +50,12 @@ function SHQPlayer(game, cursors) {
 
         var newY = this.isWhiteWorld? stageHeight/2 - (this.player.body.y + playerHeight) + stageHeight/2 :
             stageHeight/2 - (this.player.body.y - stageHeight/2) -playerHeight ;
-        console.log(newY);
 
         this.isWhiteWorld = !this.isWhiteWorld;
         this.player.body.gravity.y = this.gravity;
         this.player.body.y = newY;
         this.player.beginFill(this.isWhiteWorld?0x000000:0xffffff);
-        this.player.drawRect(0, 0, playerWidth, playerHeight);1
+        this.player.drawRect(0, 0, playerWidth, playerHeight);
         this.player.endFill();
     };
 }
